@@ -23,8 +23,8 @@ def generate_number(qty):
             break
 
         # Não inclui os números menos frequêntes
-        if num in [26, 55, 60, 40, 22, 39, 21, 57, 19, 25]:
-            continue
+        #if num in [26, 55, 60, 40, 22, 39, 21, 57, 19, 25]:
+        #    continue
 
         # Impede mais de um número na mesma coluna
         if num > 9:
@@ -47,13 +47,17 @@ def generate_number(qty):
             continue
 
         # Incluí número
-        selected_numbers.append(str(num).rjust(2, '0'))
+        selected_numbers.append(num)
 
         # Soma quantidade de pares e ímpares
         if num % 2:
             odd_numbers += 1
         else:
             even_numbers += 1
+
+    # Ordena e formata números selecionados
+    selected_numbers.sort()
+    selected_numbers = [str(num).rjust(2, '0') for num in selected_numbers]
 
     print('Seu número é... %s' % ' '.join(selected_numbers))
     print('Boa sorte!')
