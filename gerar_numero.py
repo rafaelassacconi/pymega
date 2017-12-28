@@ -1,0 +1,54 @@
+#!/usr/local/bin/python
+# coding: utf-8
+"""
+Script que gera um número para jogar na Mega-Sena
+"""
+
+import sys
+import random
+
+
+def generate_number(qty):
+    """ Retorna a quantidade de dezenas aleatórias informadas em 'qty' """
+    numbers = list(range(1, 61))
+    random.shuffle(numbers)
+
+    selected_numbers = []
+    even_numbers = 0
+    odd_numbers = 0
+
+    for num in numbers:
+        # Permite incluir apenas X números
+        if len(selected_numbers) == qty:
+            break
+
+        # Não inclui os números menos frequêntes
+        if num in [26, 55, 60, 40, 22, 39, 21, 57, 19, 25]:
+            continue
+        
+        # Impede sequências
+        if (num + 1) in selected_numbers or (num - 1) in selected_numbers:
+            continue
+
+        # Garante a mesma quantidade de pares e ímpares
+        if num % 2 and odd_numbers > even_numbers:
+            continue
+        if not num % 2 and even_numbers > odd_numbers:
+            continue
+
+        # Incluí número
+        selected_numbers.append(str(num).rjust(2, '0'))
+
+        # Soma quantidade de pares e ímpares
+        if num % 2:
+            odd_numbers += 1
+        else:
+            even_numbers += 1
+
+    print('Seu número é... %s' % ' '.join(selected_numbers))
+    print('Boa sorte!')
+
+
+if __name__ == '__main__':   
+    qty = sys.argv[1] if len(sys.argv) > 1 else 6
+    generate_number(int(qty))
