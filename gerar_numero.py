@@ -30,6 +30,16 @@ def generate_number(qty):
         if (num + 1) in selected_numbers or (num - 1) in selected_numbers:
             continue
 
+        # Impede mais de um número na mesma coluna
+        if num > 9:
+            has_similar = False
+            for sel in selected_numbers:
+                if str(num)[-1] == str(sel)[-1]:
+                    has_similar = True
+                    break
+            if has_similar:
+                continue
+
         # Garante a mesma quantidade de pares e ímpares
         if num % 2 and odd_numbers > even_numbers:
             continue
