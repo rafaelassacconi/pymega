@@ -25,10 +25,6 @@ def generate_number(qty):
         # Não inclui os números menos frequêntes
         if num in [26, 55, 60, 40, 22, 39, 21, 57, 19, 25]:
             continue
-        
-        # Impede sequências
-        if (num + 1) in selected_numbers or (num - 1) in selected_numbers:
-            continue
 
         # Impede mais de um número na mesma coluna
         if num > 9:
@@ -39,6 +35,10 @@ def generate_number(qty):
                     break
             if has_similar:
                 continue
+
+        # Impede sequências
+        if (num + 1) in selected_numbers or (num - 1) in selected_numbers:
+            continue
 
         # Garante a mesma quantidade de pares e ímpares
         if num % 2 and odd_numbers > even_numbers:
