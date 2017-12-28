@@ -51,4 +51,12 @@ def generate_number(qty):
 
 if __name__ == '__main__':   
     qty = sys.argv[1] if len(sys.argv) > 1 else 6
-    generate_number(int(qty))
+    try:
+        qty = int(qty)
+    except:
+        print('Informe um número inteiro.')
+    else:
+        if qty >= 6 and qty <= 15:
+            generate_number(int(qty))
+        else:
+            print('Informe um número de 6 à 15.')

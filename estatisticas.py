@@ -11,7 +11,7 @@ from html_table_parser.parser_functions import extract_tables, make2d
 
 
 def show_statistics():
-    """ Imprime na tela informações sobre os jogos anteriores """
+    """ Mostra na tela informações sobre os jogos anteriores """
     print('Analisando...')
 
     numbers = {}
